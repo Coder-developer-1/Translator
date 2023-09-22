@@ -1,29 +1,54 @@
-import './App.css';
+import { useEffect, useState } from 'react'
+// import axios from 'axios'
+import './App.css'
 
 function App() {
+ const [to ,setTo] = useState("");
+ const [from ,setFrom] = useState("");
+ const [input ,setInput] = useState("");
+ const [outpup ,setOutput] = useState("");
+ const [ooptions , setOoptions] = useState("")
+
+ useEffect(() => {
+    fetch("https://libretranslate.com/languages" , 
+    {headers : {"Accept" : "application/json" } }).then((res) => console.log(res))
+
+  }
+  )
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
-  );
+    <>
+    <div className="container">
+      <div>
+      From :
+        <select >
+         {ooptions.map((elm , i) => {
+          return <option value={elm.code} key={i} > {elm.name} </option>} ) }
+        </select>
+
+        To:
+        <select >
+        {ooptions.map((elm , i) => {return <option value={elm.code} key={i} > {elm.name} </option>} ) }
+        </select>
+        </div> 
+
+        <div>
+          <textarea cols="100" rows="10"></textarea>
+        </div>
+
+        <div>
+          <textarea cols="100" rows="10"></textarea>
+        </div>
+
+        <div>
+          <button>Translate</button>
+        </div>
+
+      </div>
+   
+    </>
+  )
 }
 
-export default App;
+export default App
